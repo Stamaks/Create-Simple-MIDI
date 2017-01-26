@@ -1,5 +1,7 @@
 import com.leff.midi.MidiFile;
 import com.leff.midi.MidiTrack;
+import com.leff.midi.event.MidiEvent;
+import com.leff.midi.event.ProgramChange;
 import com.leff.midi.event.meta.Tempo;
 import com.leff.midi.event.meta.TimeSignature;
 
@@ -7,12 +9,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.TreeSet;
 
 /**
  * Created by Alena on 06.01.2017.
  */
 public class TripleMidi {
-    public void create() {
+    public void create(int instrument, String instrumentName) {
 
         String fileName = "";
         final int A0pitch = 21, C8pitch = 108;
@@ -20,6 +23,7 @@ public class TripleMidi {
         Random randomBpm = new Random(60);
         Random randomVelocity = new Random(50);
         Random randomDuration = new Random(1);
+
         for (int i = A0pitch; i < C8pitch - 1; i++){
             for (int j = i + 1; j < C8pitch; j += 3){
                 for (int k = j + 1; k <= C8pitch; k +=2){
@@ -58,11 +62,17 @@ public class TripleMidi {
                     tracks.add(tempoTrack);
                     tracks.add(noteTrack);
 
+                    TreeSet<MidiEvent> mEventsTemp = (TreeSet<MidiEvent>) tracks.get(1).getEvents().clone();
+                    tracks.get(1).getEvents().clear();
+                    tracks.get(1).insertEvent(
+                            new ProgramChange(0, 1 - 1, instrument));
+                    tracks.get(1).getEvents().addAll(mEventsTemp);
+
                     MidiFile midi = new MidiFile(MidiFile.DEFAULT_RESOLUTION, tracks);
 
                     fileName = 3 + "," + pitchD + "," + pitchM + "," + pitchU + "," + duration;
 
-                    File output = new File("midiT/" + fileName + ".mid");
+                    File output = new File("midiT_"+ instrumentName + "/" + fileName + ".mid");
                     try {
                         midi.writeToFile(output);
                     } catch (IOException e) {

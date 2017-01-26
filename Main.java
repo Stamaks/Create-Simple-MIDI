@@ -14,8 +14,15 @@ import java.util.List;
  */
 public class Main {
     public static void main(String args[]) {
-        TripleMidi tm = new TripleMidi();
 
-        tm.create();
+        SimpleMidi smP = new SimpleMidi();
+        smP.create(0, "piano");
+        SimpleMidi smG = new SimpleMidi();
+        smG.create(24, "guitar");
+
+        TripleMidi tmP = new TripleMidi();
+        tmP.create(0, "piano");
+        TripleMidi tmG = new TripleMidi();
+        tmG.create(24, "guitar");
     }
 }
