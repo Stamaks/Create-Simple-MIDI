@@ -1,5 +1,5 @@
 # Create-Simple-MIDI
-The code creates MIDI files with piano chords (one chord in a file) with random duration and velocity.
+The code should create (but now it doesn't, wait for that) MIDI files with piano chords (one chord in a file) with random duration and velocity.
 
 
 ##WARNING!
