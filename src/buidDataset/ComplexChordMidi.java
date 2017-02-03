@@ -51,10 +51,11 @@ public class ComplexChordMidi {
         InstrumentName instName = new InstrumentName(0, 0, instrumentName);
         noteTrack.insertEvent(instName);
 
+        //Oh no. No-no-no. Do not touch this magic!
         TreeSet<MidiEvent> mEventsTemp = (TreeSet<MidiEvent>) tracks.get(1).getEvents().clone();
         tracks.get(1).getEvents().clear();
         tracks.get(1).insertEvent(
-                new ProgramChange(0, 1 - 1, instrument));
+                new ProgramChange(0, channel, instrument));
         tracks.get(1).getEvents().addAll(mEventsTemp);
 
         MidiFile midi = new MidiFile(MidiFile.DEFAULT_RESOLUTION, tracks);
@@ -64,22 +65,30 @@ public class ComplexChordMidi {
         for (Integer note : notes) {
             fileName += note + ",";
         }
-        fileName = fileName.substring(0, fileName.length()-1);
 
-        File directory = new File(directoryName);
-        if (!directory.exists()) {
-            if (directory.mkdir()) {
-                System.out.println("Directory is created!");
-            } else {
-                System.out.println("Failed to create directory!");
+        if (!fileName.equals("")) {
+
+            fileName = fileName.substring(0, fileName.length()-1);
+
+            File directory = new File(directoryName);
+            if (!directory.exists()) {
+                if (directory.mkdir()) {
+                    System.out.println("Directory is created!");
+                } else {
+                    System.out.println("Failed to create directory!");
+                }
+            }
+
+            File output = new File(directoryName + "/" + fileName + ".mid");
+            try {
+                midi.writeToFile(output);
+                System.err.println(fileName + ".mid");
+            } catch (IOException e) {
+                System.err.println(e);
             }
         }
-
-        File output = new File(directoryName + "/" + fileName + ".mid");
-        try {
-            midi.writeToFile(output);
-        } catch (IOException e) {
-            System.err.println(e);
+        else {
+            System.err.println("No notes were found!");
         }
     }
 

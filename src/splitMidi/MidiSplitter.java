@@ -10,17 +10,16 @@ import javax.sound.midi.*;
 import static javax.sound.midi.ShortMessage.NOTE_OFF;
 import static javax.sound.midi.ShortMessage.NOTE_ON;
 
-
 /**
  * Created by alena on 28.01.17.
  */
-public class SplitMidi {
+public class MidiSplitter {
     int min;
     String directoryName;
 
-    public SplitMidi(int min, String directoryName) {
+    public MidiSplitter(int min, String resultDirectoryName) {
         this.min = min;
-        this.directoryName = directoryName;
+        directoryName = resultDirectoryName;
     }
 
     public void split(String fileName){
@@ -44,9 +43,6 @@ public class SplitMidi {
             }
 
             String[] notes = getArrayOfFutureMidiTracks(isNoteOnTrack, sequence.getTracks());
-            for (int i = 0; i < notes.length; i++){
-                System.out.println(notes[i]);
-            }
 
             writeNewMidi(notes);
 
