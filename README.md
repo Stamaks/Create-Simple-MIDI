@@ -1,6 +1,6 @@
 # Create-Simple-MIDI
-The code should create (but now it doesn't, wait for that) MIDI files with piano chords (one chord in a file) with random duration and velocity.
+The code creates MIDI files with any-instrument chords (one chord in a file) with random duration and velocity. Good for building music datasets.
 
 
 ##WARNING!
-This code creates 21 GB of MIDI! Rewrite it to get less files.
+This code creates 3000 MIDI! Rewrite it to get less files.
