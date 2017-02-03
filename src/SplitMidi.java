@@ -141,13 +141,13 @@ public class SplitMidi {
         ComplexChordMidi ccm = new ComplexChordMidi(0, "piano");
 
         int j;
-        for (int i =0; i < notes.length; i++) {
+        for (int i = 0; i < notes.length; i++) {
             String[] currentNotes = notes[i].split(",");
             if (currentNotes[0].equals("")) j = 1;
             else j = 0;
 
             int[] currentNotesInt = new int[currentNotes.length - j];
-            for (int h = 0; h < currentNotesInt.length; j++) {
+            for (int h = 0; h < currentNotesInt.length; h++) {
                 currentNotesInt[h] = Integer.parseInt(currentNotes[h + j]);
             }
 
