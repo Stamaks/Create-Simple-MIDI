@@ -24,7 +24,8 @@ public class ComplexChordMidi {
         this.instrumentName = instrumentName;
     }
 
-    public void buildComplexChordMidi(int[] notes, int velocity, int duration, float bpm, String directoryName){
+    public void buildComplexChordMidi(int[] notes, int velocity, int duration, float bpm, String directoryName,
+                                      int[] enumerateFile) { //int[] enumerateFiles - where 0 element is true/false (also no elements is false), 1 element is file number
 
         MidiTrack tempoTrack = new MidiTrack();
         MidiTrack noteTrack = new MidiTrack();
@@ -67,6 +68,12 @@ public class ComplexChordMidi {
         }
 
         if (!fileName.equals("")) {
+
+            if (enumerateFile.length > 0) {
+                if (enumerateFile[0] == 1 && enumerateFile.length >= 2) {
+                    fileName = enumerateFile[1] + "," + fileName;
+                }
+            }
 
             fileName = fileName.substring(0, fileName.length()-1);
 
