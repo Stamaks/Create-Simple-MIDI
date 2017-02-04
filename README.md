@@ -1,10 +1,10 @@
-# Create-Simple-MIDI
-Created 
+# MIDI datasets
+Allows you to build midi datasets.
 
 ###buildDataset
-The code creates MIDI files with any instrument chords (one chord in a file) with random duration and velocity. Good for building music datasets, if you want lots of little MIDI files be there. Names of such files are midi note numbers splited by ','. For instance "40,45,51.mid".
+The code creates MIDI files with unique chords (one chord in a file; any instrument) with random duration and velocity. Names of such files are notes' midi-numbers splited by ','. For e.g. "40,45,51.mid".
 ##WARNING!
 This code creates 3000 MIDI! Rewrite it to get less files.
 
 ###splitMidi
-Splits big MIDI file into little MIDI files by note minimum duration.
+Splits big MIDI file into little MIDI files by notes minimum duration.
