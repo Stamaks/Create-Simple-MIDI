@@ -138,6 +138,7 @@ public class MidiSplitter {
         ComplexChordMidi ccm = new ComplexChordMidi(0, "piano");
 
         int j;
+        int[] enumerateFiles = {1, 0}; //where 0 element is "true", 1 element is file number
         for (int i = 0; i < notes.length; i++) {
             String[] currentNotes = notes[i].split(",");
             if (currentNotes[0].equals("")) j = 1;
@@ -148,7 +149,8 @@ public class MidiSplitter {
                 currentNotesInt[h] = Integer.parseInt(currentNotes[h + j]);
             }
 
-            ccm.buildComplexChordMidi(currentNotesInt, 80, 60, 144, directoryName);
+            enumerateFiles[1] = i;
+            ccm.buildComplexChordMidi(currentNotesInt, 80, 60, 144, directoryName, enumerateFiles);
         }
     }
 }

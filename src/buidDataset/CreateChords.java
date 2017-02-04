@@ -61,7 +61,8 @@ public class CreateChords {
                 velocity = minVelocity + random.nextInt(maxVelocity - minVelocity + 1);
                 duration = minDuration + minDuration * random.nextInt(16);
 
-                ccm.buildComplexChordMidi(notes, velocity, duration, bpm, directoryName);
+                int[] enumerateFiles = {}; //don't need enumeration
+                ccm.buildComplexChordMidi(notes, velocity, duration, bpm, directoryName, enumerateFiles);
 
                 countLoops = 0;
             }
