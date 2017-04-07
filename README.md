@@ -7,4 +7,4 @@ The code creates MIDI files with unique chords (one chord in a file; any instrum
 This code creates 3000 MIDI! Rewrite it to get less files.
 
 ###splitMidi
-Splits big MIDI file into little MIDI files by notes minimum duration.
+Splits big MIDI file into little MIDI files by notes minimum duration. Names of such files is file's index and notes' midi-numbers, all splited by ','. For e.g. "1,40,45,51.mid".
