@@ -16,6 +16,15 @@ public class CreateChords {
     int maxVelocity = 100;
     int minDuration = 30;
     int maxLoopsNumber = 100;
+    boolean randomBPM;
+    boolean randomVelocity;
+    boolean randomDuration;
+
+    public CreateChords(boolean randomBPM, boolean randomVelocity, boolean randomDuration) {
+        this.randomBPM = randomBPM;
+        this.randomVelocity = randomVelocity;
+        this.randomDuration = randomDuration;
+    }
 
     public void create(int instrument, String instrumentName, int firstNote, int lastNote,
                        int notesQuantity, int chordsQuantity, String directoryName) {
@@ -49,6 +58,7 @@ public class CreateChords {
             Arrays.sort(notes);
 
             if (usedChords.contains(notes)) {
+                System.err.println("PDNHIIIDNDFNHDFNDFNDFPIHUDFPHIEF FNHEFIN");
                 i--;
                 if (countLoops == maxLoopsNumber) {
                     System.err.println("Too many loops done! Unable to build any more chords!");
@@ -57,9 +67,20 @@ public class CreateChords {
             } else {
                 usedChords.add(notes);
 
-                bpm = minBPM + random.nextInt(maxBPM - minBPM + 1);
-                velocity = minVelocity + random.nextInt(maxVelocity - minVelocity + 1);
-                duration = minDuration + minDuration * random.nextInt(16);
+                if (randomBPM)
+                    bpm = minBPM + random.nextInt(maxBPM - minBPM + 1);
+                else
+                    bpm = maxBPM;
+
+                if (randomVelocity)
+                    velocity = minVelocity + random.nextInt(maxVelocity - minVelocity + 1);
+                else
+                    velocity = maxVelocity;
+
+                if (randomDuration)
+                    duration = minDuration + minDuration * random.nextInt(16);
+                else
+                    duration = minDuration*16;
 
                 int[] enumerateFiles = {}; //don't need enumeration
                 ccm.buildComplexChordMidi(notes, velocity, duration, bpm, directoryName, enumerateFiles);

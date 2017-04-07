@@ -17,10 +17,10 @@ public class Main {
         int instrument = 0; //Acoustic Grand Piano
         String instrumentName = "Acoustic Grand Piano";
         int A0pitch = 21, C8pitch = 108; //Piano keyboard range
-        int notesQuantity = 3, chordsQuantity = 3000;
+        int notesQuantity = 3, chordsQuantity = 20000;
         String directoryName = "midiChords";
 
-        CreateChords cc = new CreateChords();
+        CreateChords cc = new CreateChords(false, false, false);
         cc.create(instrument, instrumentName, A0pitch, C8pitch, notesQuantity, chordsQuantity, directoryName);
 
     }
